@@ -98,7 +98,7 @@ En el directorio **&#47;js** encontramos, entre otros:
 
 **cdocs-nw-tools** — Las imágenes (logo de la aplicación) en formatos **.ico**, **.png** y **.icns** para el uso en las plataformas, **Windows**, **Linux** y **Mac OSX**, respectivamente. También el archivo **CDOCS.desktop** (lanzador para **Linux**) y el directorio, **cdocs-nw-updater** con los recursos necesarios para el funcionamiento del sistema de actualizaciones.
 
-> **<sup>1</sup>&#160;Para más detalles sobre descripción, propósito, características y programación de CDOCS NW leer: DOCUMENTACIÓN**. Gracias.
+> **<sup>1</sup>&#160;Para más detalles sobre descripción, propósito, características y programación de CDOCS NW leer: [DOCUMENTACIÓN](https://github.com/fooghub/Cdocs-NW/blob/master/cdocs-nw-proyect/md/documentation.md "documentation.md")**. Gracias.
 
 ----
 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+Aplicación: CDOCS - NW
+Archivo: index.html
+2004, 2017 Foog.Software.
+-->
+<html>
+<head>
+<title>CDOCS</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./css/index_min.css" type="text/css">
+<script type="text/javascript" src="./js/index_min.js"></script>
+</head>
+<body>
+<div id="protector"></div>
+<dialog id="advertencia-salida"><div id="advertencia-salida-cabecera"><div id="advertencia-salida-cabecera-texto">¡ATENCIÓN!</div><div id="advertencia-salida-cabecera-cierre" onclick="cerrarAdvertenciaSalida('0');">&#215;</div></div><div id="advertencia-salida-imagen"><img id="advertencia-salida-icono" src="images/png/ayuda_48.png" alt="" title="" height="48" width="48"></div><div id="advertencia-salida-cuerpo"><div id="advertencia-salida-cuerpo-texto"><p>Quedan ventanas abiertas&#160;&#8230;</p><p>¿Quieres salir de la aplicación?</p></div><div id="advertencia-salida-cuerpo-botonera"><div id="advertencia-salida-botonera-pulsador-i" onclick="cerrarAdvertenciaSalida('0');">NO</div><div id="advertencia-salida-botonera-pulsador-d" onclick="cerrarAdvertenciaSalida('1');">SI</div></div></div></dialog>
+<div id="cabecera"><div id="captura"><div id="captura-imagen"><img id="captura-imagen-camera" src="images/png/camera.png" alt="" title="" height="24" width="24" class="imagen-medio"></div><div id="captura-texto">&#160;</div></div><div id="botones-mnu" class="botones-oculto" onclick="visualizarMnuEmergente(event)"></div></div>
+<div id="continente">
+<div id="margen">
+<div id="margen-logo"><img src="images/png/logo64.png" id="imagen-estado" alt="" title="" height="64" width="64"></div>
+<div id="margen-inicio"><span id="botones-inicio" class="botones-oculto" onclick="cargarFormulario('home')">INICIO</span></div>
+</div>
+<div id="contenido">
+<div class="formulario"><form name="front" id="front"><div id="front-texto">CDOCS</div><div id="front-sonrisa"></div></form></div>
+</div>
+<div id="botonera"><div id="botonera-botones"><span id="botones-nuevo" onclick="restaurarFormulario()" class="botones-oculto">NUEVO</span><span id="botones-imprimir" onclick="imprimirFormulario()" class="botones-oculto">IM<u>P</u>RIMIR</span><span id="botones-validar" onclick="validarFormulario()" class="botones-oculto">&#160;</span></div></div>
+<div id="pie"><span><img src="images/png/copyleft12.png" alt="Copyleft" title="Copyleft" height="12" width="12" class="imagen-medio"></span><span>&#160;2004&#160;&#45;&#160;</span><span id="pie-anualidad-corriente">&#160;</span><span>&#160;Foog.Software</span></div>
+</div>
+</body>
+</html>

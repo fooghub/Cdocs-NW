@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CDOCS : Licencia MIT</title>
+<meta charset="UTF-8">
+<style type="text/css">
+html,body{
+	color: #595959;
+	background-color:#E0E0E0;
+	font-size:14px;
+	font-family:"Nimbus Sans L","URW Gothic L",Verdana,Tahoma,Helvetica,"Lucida Grande",Geneva,"DejaVu Sans","Microsoft Sans Serif",sans-serif; 
+	font-weight: normal;
+	-webkit-user-select: none; 
+	overflow:hidden;
+}
+#ventana-licencia{
+	position:absolute;
+	top:12px; left:12px; bottom:12px; right: 12px;
+	padding:6px;
+	overflow-x:hidden;
+	overflow-y: scroll; 
+	color: inherit;
+	background-color:#F0F0F0;
+	display:block;
+}
+#osi{
+	margin-left:14px;
+}
+.licencia-aviso{
+	color: #000000;
+	background-color : inherit;		
+}
+.texto-capital{
+	font-size:14px;
+	font-weight:bold;
+	color:#404040;
+	background-color:inherit;	
+}
+
+
+.texto-falsa-negrita{
+	color:#404040;
+	background-color:inherit;		
+}
+.texto-centrado{
+	text-align: center;
+}
+.texto-justificado{
+	text-align:justify;
+}
+img.alineadoTextoImagenCentro{
+  vertical-align: middle;  
+}
+#ventana-licencia::-webkit-scrollbar {
+	width: 10px;
+} 
+#ventana-licencia::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 4px rgba(0,0,0,0.3); 
+	border-radius: 8px;
+	background-clip: content-box;
+}
+#ventana-licencia::-webkit-scrollbar-thumb {
+	border-radius: 8px;
+	box-shadow: inset 0 0 4px rgba(0,0,0,0.5); 
+}
+</style>
+<script type="text/javascript">
+var anualidadCorriente = new Date().getFullYear();
+window.onload=function(){
+document.getElementsByClassName("licencia-anualidad-corriente")[0].innerHTML = anualidadCorriente;
+document.getElementsByClassName("licencia-anualidad-corriente")[1].innerHTML = anualidadCorriente;
+document.getElementsByClassName("licencia-anualidad-corriente")[2].innerHTML = anualidadCorriente;
+};
+</script>
+</head>
+<body>
+<div id="ventana-licencia" class="texto-justificado">
+<h4><img src="../../images/png/osi_64.png" alt="OSI" title="OSI" class="alineadoTextoImagenCentro"><span id="osi">Open Source Iniciative</span></h4>
+<hr />
+<h3>The MIT License (MIT)</h3>
+<p><span class="texto-falsa-negrita">Copyright (c)&#160;<span class="licencia-anualidad-corriente">&#160;</span><span>&#160;Foog.Software</span></span></p> 
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.<p>
+<p class="licencia-aviso">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+<hr />
+<h3>Licencia MIT (traducción NO oficial)</h3>
+<p><span class="texto-falsa-negrita">Copyright (c)&#160;<span class="licencia-anualidad-corriente">&#160;</span><span>&#160;Foog.Software</span></span></p>
+<p>Se concede permiso por la presente, de forma gratuita, a cualquier persona que obtenga una copia de este software y de los archivos de documentación asociados (el "Software"), para utilizar el Software sin restricción, incluyendo sin limitación los derechos de usar, copiar, modificar, fusionar, publicar, distribuir, sublicenciar, y/o vender copias de este Software, y para permitir a las personas a las que se les proporcione el Software a hacer lo mismo, sujeto a las siguientes condiciones:</p> 
+<p>El aviso de copyright anterior y este aviso de permiso se incluirán en todas las copias o partes sustanciales del Software.</p>
+<p class="licencia-aviso">EL SOFTWARE SE PROPORCIONA "TAL CUAL", SIN GARANTÍA DE NINGÚN TIPO, EXPRESA O IMPLÍCITA, INCLUYENDO PERO NO LIMITADO A GARANTÍAS DE COMERCIALIZACIÓN, IDONEIDAD PARA UN PROPÓSITO PARTICULAR Y NO INFRACCIÓN. EN NINGÚN CASO LOS AUTORES O TITULARES DEL COPYRIGHT SERÁN RESPONSABLES DE NINGUNA RECLAMACIÓN, DAÑOS U OTRAS RESPONSABILIDADES, YA SEA EN UN LITIGIO, AGRAVIO O DE OTRO MODO, QUE SURJA DE O EN CONEXIÓN CON EL SOFTWARE O EL USO U OTRO TIPO DE ACCIONES EN EL SOFTWARE.</p>
+<hr class="separador" />
+<p class="texto-centrado"><span class="texto-capital">CDOCS</span> <span class="texto-falsa-negrita">(Comprueba Documentos)</span></p>
+<p class="texto-centrado texto-talla-xs">Francisco J. Gómez</p>
+<p class="texto-centrado texto-sombra texto-talla-xs"><span><img src="../../images/png/copyleft12.png" alt="Copyleft" title="Copyleft" class="imagen-medio"></span><span>&#160;2004&#160;&#45;&#160;</span><span class="licencia-anualidad-corriente">&#160;</span><span>&#160;Foog.Software</span></p>
+</div>
+</body>
+</html>

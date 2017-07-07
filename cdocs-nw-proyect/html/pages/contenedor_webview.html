@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title> <!-- Dejamos vacío, modificado por NW.js en la carga de la ventana -->
+<meta charset="UTF-8">
+<style type="text/css">
+*{outline:0}
+html, body{	  
+	margin: 0px;
+	font-size:12px;
+	cursor:default;
+	color: #666666;
+	background-color:#E0E0E0;	
+	font-family:"Nimbus Sans L","URW Gothic L",Verdana,Tahoma,Helvetica,"Lucida Grande",Geneva,"DejaVu Sans","Microsoft Sans Serif",sans-serif; 	
+	font-weight: normal;
+	overflow:hidden;	
+}
+#alerta{
+	width: 520px;
+	height: 320px; 
+	padding:0;
+	border-radius: 6px;
+	border: 1px solid  #aeb6bf;
+	box-shadow: 6px 6px 6px 0px rgba(0,0,0,0.75);
+	color: #666666;
+	background-color: #F2F3F4;	
+}
+#alerta-cabecera{
+	float:left;
+	width:520px;
+	height:32px;
+	border-radius: 6px 6px;
+	color: #000000;
+	background-color:#FFFFFF;
+}
+#alerta-cabecera-texto{
+	float:left;
+	width:472px;
+	height:32px;
+	text-align:center;
+	overflow: hidden;
+	font-weight: bold;
+	line-height: 28px;
+}
+#alerta-cabecera-cierre{
+	float:right;
+	width:46px;
+	height:32px;
+	text-align:center;
+	font-size:22px;
+	cursor:pointer;
+}
+#alerta-cabecera-cierre:hover{
+	color:#FFFFFF;
+	background-color:#595959;
+	font-weight: bold;
+}
+#alerta-imagen{
+	float:left;
+	width:68px;
+	height:284px;
+	margin:1px;
+	text-align:center;
+}
+#alerta-icono{
+	margin-top:120px;
+}
+#alerta-cuerpo{
+	float: right;
+	width:446px;
+	height:284px;
+	margin:1px;
+}
+#alerta-cuerpo-texto{
+	float:left;
+	width:440px;
+	height:240px;
+	padding:2px;
+	text-align:left;
+	overflow: hidden;
+}
+#alerta-cuerpo-pulsador{
+	float:right;
+	width:124px;
+	height:30px;
+	border-radius: 4px;
+	border:1px solid #595959;
+	margin:4px 4px 0 4px;
+	text-align:center;
+	line-height: 28px;
+	font-size:14px;
+	font-weight:normal;
+	color:#191919;
+	background-color: inherit;
+}
+#alerta-cuerpo-pulsador:hover{
+	cursor:pointer;
+	font-weight:bold;
+	color:#595959;
+	background-color:#FFF;
+}
+
+#contenedorWeb{
+	position:absolute;
+	top:2px; left:2px; bottom:44px; right:2px;
+	display:block; 
+	padding:0;
+	color: inherit;
+	background-color:#E0E0E0;
+}
+#pie{
+	position: absolute;
+	left:2px; bottom:2px; right:2px;
+	width: 100vw;
+	height: 37px;
+	background-color:#E0E0E0;
+	color: inherit;	
+}
+#pie-1{
+	float:left;
+	width:33vw;
+	height:36px;
+	text-align: left;
+	padding:0;
+}
+#pie-3{
+	float:left;
+	width:17vw;
+	height:36px;
+	text-align:right;	
+	padding:0;
+}
+
+#pie-4{
+	float:left;
+	width:17vw;
+	height:36px;
+	text-align:left;	
+	padding:0;
+}
+
+#pie-5{
+	float:right;
+	width:33vw;
+	height:36px;
+	text-align:right;
+	padding:0;
+}
+
+#pie-1-imagen{
+	width:32px;
+	height:32px;
+	vertical-align: middle;
+	margin:2px 0 0 20px;
+	opacity:0.3;
+	visibility:hidden;
+}
+#pie-3-imagen{
+	width:32px;
+	height:32px;
+	vertical-align: middle;
+	margin:2px 0 0 0;
+	cursor:default;
+	opacity:0.3;
+	visibility:visible;
+}
+#pie-4-imagen{
+	width:32px;
+	height:32px;
+	vertical-align: middle;
+	margin:2px 0 0 0;
+	opacity:0.3;
+	visibility:hidden;
+}
+#pie-5-imagen{
+	width:32px;
+	height:32px;
+	vertical-align: middle;
+	margin:2px 20px;
+	opacity:0.3;
+	visibility:hidden;
+}
+
+webview{
+	display:inline-flex; 
+	width: 0px;	
+	height:0px;
+	border:1px solid green;
+	opacity:1;
+	transition: opacity 1s ease-in-out;	
+}
+webview.oculta{
+	flex: 0 1;
+    width: 0px;
+    height: 0px;
+	opacity: 0;
+}
+hr{ 
+	display: block;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	margin-left: auto;
+	margin-right: auto;
+	border-style: inset;
+	border-width: 1px;    
+} 
+
+</style>
+<script type="text/javascript">
+var anchuraWebview, mayorAnchuraWebview, alturaWebview, mayorAlturaWebview;
+var cargaComprometida = 0;
+var cargaAbortada = false;
+var cargaAbortadaUrl = "";
+var cargaAbortadaNivelSuperior = false;
+var cargaAbortadaCifra = 0;
+var cargaAbortadaMotivo = "";
+var cargaAbortadaTipo = "";
+var permisoRequerido = false;
+var permisoDenegado = false;
+var permisoDenegadoTarea = "";
+var permisoDenegadoUrl = "";
+var permisoDenegadoEvento = "";
+var webview = null;
+var dialog = null;
+var urlCorriente = "";
+var retraso;
+
+var cerrarAlerta = function (valor) {
+valor = valor || 0;
+cargaAbortada = false;
+cargaAbortadaUrl = "";
+cargaAbortadaNivelSuperior = false;
+cargaAbortadaCifra = 0;
+cargaAbortadaMotivo = "";
+cargaAbortadaTipo = "";
+permisoRequerido = false;
+permisoDenegado = false;
+permisoDenegadoTarea = "";
+permisoDenegadoUrl = "";
+permisoDenegadoEvento = "";
+dialog.close(valor);
+};
+
+
+
+var abrirWEBVIEWenNavegador = function (){
+	document.getElementById("pie-4-imagen").style.visibility = "hidden";
+	document.getElementById("pie-3-imagen").style.visibility = "visible";
+	document.getElementById("pie-1-imagen").style.visibility = "hidden";
+	document.getElementById("pie-5-imagen").style.visibility = "hidden";
+	nw.Shell.openExternal(webview.src);	
+	clearTimeout(retraso);
+	retraso = setTimeout(function(){
+		document.getElementById("pie-3-imagen").style.visibility = "hidden";
+		document.getElementById("pie-4-imagen").style.visibility = "visible";
+		document.getElementById("pie-1-imagen").style.visibility = "visible";
+		document.getElementById("pie-5-imagen").style.visibility = "visible";
+		window.close();
+	}, 2000); 
+};
+var activarPulsadores = function(elemento){
+	if(elemento.id){
+		switch(elemento.id){
+		case "pie-1-imagen":
+			if(webview.canGoBack()){
+				elemento.style.opacity = 1;
+				elemento.style.cursor = "pointer";
+			}
+		break;
+		case "pie-5-imagen":
+			if(webview.canGoForward()){
+				elemento.style.opacity = 1;
+				elemento.style.cursor = "pointer";
+			}
+		break;
+		default:
+			elemento.style.opacity = 1;
+			elemento.style.cursor = "pointer";
+		}
+	}
+};
+var desactivarPulsadores = function(elemento){
+	elemento.style.opacity = 0.3;
+	elemento.style.cursor = "default";	
+};
+var retrocederWEBVIEW =function (){
+	if(webview.canGoBack()){
+		webview.back();
+	}
+};
+	var avanzarWEBVIEW = function (){
+	if(webview.canGoForward()){
+		webview.forward();
+	}
+};
+
+var abrirAlerta = function (titular, texto){
+	document.getElementById("alerta-cabecera-texto").innerHTML = titular;
+	document.getElementById("alerta-cuerpo-texto").innerHTML = texto;
+	dialog.showModal();
+};
+
+var obtenerObservacionesAlerta = function (motivo){
+	var observaciones = "";
+	switch(motivo.toUpperCase()){
+		case "ERR_ABORTED":
+		observaciones = "Solicitud interrumpida.";
+		break;
+		case "ERR_INVALID_URL":
+		observaciones = "La dirección no es válida.";
+		break;
+		case "ERR_DISALLOWED_URL_SCHEME":
+		observaciones = "La dirección no tiene el esquema necesario.";
+		break;
+		case "ERR_BLOCKED_BY_CLIENT":
+		observaciones = "Bloqueado por la aplicación.";
+		break;
+		case "ERR_ADDRESS_UNREACHABLE":
+		observaciones = "No fue posible resolver la dirección.";
+		break;
+		case "ERR_EMPTY_RESPONSE":
+		observaciones = "Respuesta sin contenido.";
+		break;
+		case "ERR_FILE_NOT_FOUND":
+		observaciones = "Archivo no encontrado.";
+		break;
+		case "ERR_UNKNOWN_URL_SCHEME":
+		observaciones = "Esquema de dirección desconocido.";
+		break;
+		default:
+		observaciones = "Solicitud abortada.";
+	}
+	return observaciones;
+};
+
+window.onload = function (){
+webview = document.getElementsByTagName("webview")[0];
+dialog = document.getElementById("alerta");
+anchuraWebview = parseInt(document.getElementById("contenedorWeb").offsetWidth, 10);
+mayorAnchuraWebview = parseInt(document.getElementById("contenedorWeb").offsetWidth, 10);
+alturaWebview = parseInt(document.getElementById("contenedorWeb").offsetHeight, 10) - 2;
+mayorAlturaWebview = parseInt(document.getElementById("contenedorWeb").offsetHeight, 10); 
+
+webview.addEventListener("loadstart", function (){
+	if (cargaComprometida === 0){
+		webview.style.width = anchuraWebview + "px";
+		webview.style.maxWidth = mayorAnchuraWebview + "px";
+		webview.style.height = alturaWebview + "px";
+		webview.style.maxHeight = mayorAlturaWebview  + "px";
+	}
+	
+});
+
+
+webview.addEventListener("loadabort", function (evento) {
+	cargaAbortada = true;
+	cargaAbortadaUrl = evento.url;
+	cargaAbortadaNivelSuperior = evento.isTopLevel;
+	cargaAbortadaCifra = evento.code;
+	cargaAbortadaMotivo = evento.reason;
+	cargaAbortadaTipo = evento.type;
+});
+
+webview.addEventListener('permissionrequest', function (evento){
+	permisoRequerido = true;
+	
+	if(evento.permission === "fullscreen"){
+		permisoDenegado = true;
+		permisoDenegadoEvento = evento.type;
+		permisoDenegadoTarea = evento.permission;
+		permisoDenegadoUrl = evento.url;
+		evento.request.deny();	
+		
+	}else{
+		permisoDenegado = false;
+		permisoDenegadoEvento = "";
+		permisoDenegadoTarea = "";
+		permisoDenegadoUrl = "";
+		evento.request.allow();	
+	}	
+	
+});
+
+webview.addEventListener("loadstop", function (){
+	urlCorriente = webview.src;	
+	if (cargaComprometida === 0){
+		webview.style.borderBottom = "2px solid #CCCCCC";
+		webview.className = "";
+	}
+	cargaComprometida += 1;
+	document.getElementById("pie-3-imagen").style.visibility = "hidden";	
+	if(cargaComprometida ===1){	
+		document.getElementById("pie-1-imagen").style.visibility = "visible";
+		document.getElementById("pie-4-imagen").style.visibility = "visible";
+		document.getElementById("pie-5-imagen").style.visibility = "visible";		
+	}
+	if(cargaComprometida > 2){cargaComprometida = 2;}		
+	if(cargaComprometida > 1){	
+		if(urlCorriente.match(/cdocs-nw/ig) !== null){
+			document.title = "CDOCS : CÓDIGO FUENTE (GitHub)";
+		}else if(urlCorriente.match(/fooghub/ig) !== null){
+			document.title = "FOOGHUB (GitHub)";
+		}else if (urlCorriente.match(/github/ig) !== null){
+			document.title ="GitHub ... ";
+		}else if (urlCorriente.match(/^data?:text\//i) !== null){
+			document.title ="ERROR ...";
+		}else{
+			document.title = " —> " + urlCorriente;							
+		}
+	}
+	if(permisoRequerido && !permisoDenegado){
+		cargaAbortada = false;
+	}
+	if(permisoRequerido){ permisoRequerido = false;}
+	var titularAlerta = "";
+	var textoHTMLalerta = "";
+	var visualizarAlerta = false;
+	if(cargaAbortada && !permisoDenegado){
+	    titularAlerta = "¡NO SE PUEDE ACCEDER A ESTE SITIO WEB!";
+		textoHTMLalerta ="<p><div><b>Sitio Web / Recurso:</b></div><div>" + cargaAbortadaUrl + "</div></p><p><b>Tarea solicitada:&#160;</b>&#8220;NAVIGATE&#8221;</p><p><b>Evento:&#160;</b>&#8220;" + cargaAbortadaTipo + "&#8221;</p><p><div><b>Nivel:&#160;</b>" + ((cargaAbortadaNivelSuperior) ? "Superior": "Inferior (sub-frame)") + "</div></p><p><div><b>Código Error:&#160;</b>" + cargaAbortadaCifra + "</div></p><p><b>Motivo Error:</b>&#160;" + cargaAbortadaMotivo + "</p><p><b>Observaciones:</b>&#160;" + obtenerObservacionesAlerta(cargaAbortadaMotivo) + "</p><hr />"; 	
+		visualizarAlerta = true;
+	}else if(cargaAbortada && permisoDenegado){
+		titularAlerta = "¡PERMISO DENEGADO!";
+		textoHTMLalerta ="<p><div><b>Sitio Web / Recurso:</b></div><div>" + permisoDenegadoUrl + "</div></p><p><b>Tarea solicitada:&#160;</b>&#8220;" + permisoDenegadoTarea.toUpperCase() + "&#8221;</p><p><b>Evento:&#160;</b>&#8220;" + permisoDenegadoEvento + "&#8221;</p><p><div><b>Nivel:&#160;</b>" + ((cargaAbortadaNivelSuperior) ? "Superior": "Inferior (sub-frame)") + "</div></p><p><div><b>Código Error:&#160;</b>" + cargaAbortadaCifra + "</div></p><p><b>Motivo Error:&#160;</b>" + cargaAbortadaMotivo + "<p><div><b>Observaciones:</b><div>Permiso requerido para la ejecución de&#160;" + permisoDenegadoTarea.toUpperCase() + ", denegado por la aplicación.</div><hr />"; 
+		visualizarAlerta = true;
+	}else if(!cargaAbortada && permisoDenegado){
+		titularAlerta = "¡PERMISO DENEGADO!";
+		textoHTMLalerta ="<p><div><b>Sitio Web / Recurso:</b></div><div>" + permisoDenegadoUrl + "</div></p><p><b>Tarea solicitada:&#160;</b>&#8220;" + permisoDenegadoTarea.toUpperCase() + "&#8221;</p><p><b>Evento:&#160;</b>&#8220;" + permisoDenegadoEvento + "&#8221;</p><p><div><b>Nivel:&#160;</b>Superior</div></p><p><b>Código Error:&#160;</b>3</p><p><b>Motivo Error:&#160;</b>E_PERMISSION_DENIED</p><p><b>Observaciones:</b>&#160;Permiso requerido para la ejecución de&#160;" + permisoDenegadoTarea.toUpperCase() + ", denegado por la aplicación.</p><hr />"; 	
+		visualizarAlerta = true;
+	}else{
+		visualizarAlerta = false;
+	}	
+	if(visualizarAlerta){
+		abrirAlerta(titularAlerta, textoHTMLalerta);
+	}
+});
+
+webview.addEventListener('consolemessage', function (evento) {
+	console.log('CDOCS (webview) ADVERTENCIA:\n' + evento.message + "\n-------------------\n\n");
+});
+
+webview.addEventListener('exit', function (evento) {
+	var proceso = evento.processID;
+	var mensajeSalida = "data:text/html,<div style='font-family: Verdana, Arial, Helvetica, sans-serif;font-size:14px;font-weight:bold;color: #666666;background-color:#ffffff;'>Proceso&#160;" + proceso  + "&#160;: Evento &#8220;exit&#8220; con motivo &#8220;crash&#8221;.<div>Por favor cierra esta ventana.</div><div>Gracias!</div></div>"; 
+	if (evento.reason === 'crash') {
+		webview.src = mensajeSalida;
+	}
+});
+
+webview.addEventListener('close', function () {
+  webview.src = 'about:blank';
+});
+
+webview.addEventListener('newwindow', function (evento) {
+	evento.preventDefault();
+	var urlDestino = (evento.targetUrl && evento.targetUrl !== "" && evento.targetUrl !== "about:blank") ? evento.targetUrl : "data:text/html,<div style='font-family: Verdana, Arial, Helvetica, sans-serif;font-size:14px;font-weight:bold;color: #666666;background-color:#ffffff;'>Se bloque&#243; una nueva ventana.</div>";	
+	webview.src = urlDestino;	
+});
+
+
+webview.request.onBeforeRequest.addListener(
+  function (details) { return {cancel: true}; },
+  {urls: ["*://wwww.iiiiiiiiiiiiiiiiiiiiii.com/*"]}, // Array de urls que serán bloqueadas
+  ["blocking"]);
+}; 
+</script>	
+</head>
+<body>
+<dialog id="alerta"><div id="alerta-cabecera"><div id="alerta-cabecera-texto">&#160;</div><div id="alerta-cabecera-cierre" onclick="cerrarAlerta(0);">&#215;</div></div><div id="alerta-imagen"><img id="alerta-icono" src= "./../../images/png/alerta_64.png" alt="" title="" width="48" height="48"></div><div id="alerta-cuerpo"><div id="alerta-cuerpo-texto">&#160;</div><div id="alerta-cuerpo-pulsador" onclick="cerrarAlerta(0);">ACEPTAR</div></div></dialog>
+<div id="contenedorWeb"><webview id="webview" partition="persistent:trusted" src="https://github.com/fooghub/Cdocs-NW.git" class="oculta"></webview></div>
+<div id="pie">
+<div id ="pie-1"><img id="pie-1-imagen" src= "./../../images/png/play_i_128.png" alt="" title="" onmouseover="activarPulsadores(this)"  onmouseout="desactivarPulsadores(this)" onclick="retrocederWEBVIEW();"></div>
+<div id ="pie-3"><img id="pie-3-imagen" src= "./../../images/gif/giro_46.gif" alt="" title=""></div>
+<div id ="pie-4"><img id="pie-4-imagen" src= "./../../images/png/globe_120.png" alt="" title="" onmouseover="activarPulsadores(this)"  onmouseout="desactivarPulsadores(this)" onclick="abrirWEBVIEWenNavegador();"></div>
+<div id ="pie-5"><img id="pie-5-imagen" src= "./../../images/png/play_128.png" alt="" title="" onmouseover="activarPulsadores(this)"  onmouseout="desactivarPulsadores(this)" onclick="avanzarWEBVIEW();"></div>
+</div>
+
+</body>
+</html>
+

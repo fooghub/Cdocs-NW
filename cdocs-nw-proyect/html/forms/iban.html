@@ -1,0 +1,26 @@
+<div class="formulario">
+<form name="iban" id="iban" autocomplete="off">
+<div class="formulario-cabecera"><ul><li><span class="texto-capital">IBAN</span><span>&#160;&#160;Verificación del Código Internacional de Cuenta Bancaria ...</span></li></ul></div>
+<div class="formulario-entrada">
+<table>
+<tr>
+<td class="porcentaje10 texto-centrado"><input type="text" tabindex="1" maxlength="2" class="columna78" /></td>
+<td class="porcentaje10 texto-centrado"><input type="text"  tabindex="2" maxlength="2" class="columna78" /></td>
+<td class="porcentaje74 texto-centrado"><input type="text" tabindex="3" maxlength="28" class="columna97" /></td>
+<td id="verificado-iban" class="porcentaje6"><img src="images/png/ok.png" alt="" title="" class="verificado-imagen" /></td>
+</tr>
+<tr>
+<td class="texto-centrado texto-informativo">PAÍS</td>
+<td class="texto-centrado texto-informativo texto-falsa-negrita">DC</td>
+<td class="texto-centrado texto-informativo">CÓDIGO DE CUENTA</td>
+<td></td>
+</tr>
+</table> 
+<input id="oculto-iban" type="hidden" value="" />
+</div>
+<div id="salida-iban" class="formulario-salida">
+<div class="formulario-salida-definiciones">El <span class="texto-falsa-negrita">IBAN</span> consta de un máximo de 34 caracteres alfanuméricos. Los dos primeros (letras) identifican el <span class="texto-falsa-negrita">país</span>, los dos siguientes (números) son <span class="texto-falsa-negrita">dígitos de control</span> y los restantes (números o letras), el <span class="texto-falsa-negrita">código de cuenta</span>.</div>
+</div>
+<div id="alerta-iban" class="formulario-alerta">&#160;</div>
+</form>
+</div>

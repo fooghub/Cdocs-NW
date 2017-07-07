@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title> <!-- Contenido dinámico -->
+<meta charset="UTF-8">
+<style type="text/css">
+html,body{
+color: #ccc;
+background-color:#E0E0E0;
+font-family:"Nimbus Sans L","URW Gothic L",Verdana,Tahoma,Helvetica,"Lucida Grande",Geneva,"DejaVu Sans","Microsoft Sans Serif",sans-serif; 
+font-size:14px;
+font-weight:normal;
+}
+#contenedorPDF{
+position:absolute;
+top:1%; left:1%;
+width:98%;
+height:98%;
+background-color:#565656;
+overflow: hidden;
+} 
+#contenidoPDF{ 
+position:relative;
+width:1%;
+height:1%;
+visibility:hidden;
+}
+#precarga{
+position:relative;
+top:100px;
+width:100%;
+height: 84px;
+text-align:center;
+}
+#precarga-imagen{
+width:64px;
+height:64px;
+}
+</style>
+<script type="text/javascript">
+var archivoPDF = atob(window.location.search.substring(1));
+var esperaPDF, intervaloEspera = 500; //Reducir el valor de la variable "intervaloEspera" si hay problemas para visualizar el PDF en esta ventana.
+var contadorCargas = 0;
+window.onload=function(){	
+	document.oncontextmenu = function(){return false;};
+	function visualizarPDF(){	
+		document.getElementById("precarga").remove();
+		document.getElementById("contenidoPDF").style.width = "100%";
+		document.getElementById("contenidoPDF").style.height = "100%";
+		document.getElementById("contenidoPDF").style.visibility = "visible";		
+	}
+	function mostrarError(){
+		document.getElementById("precarga-imagen").src = "./../../images/png/alerta_64_invert.png";
+		document.getElementById("precarga-texto").innerHTML = "<p style='text-align:center;'>ERROR en visualización de contenido PDF.</p><p>Cierra esta ventana e intenta la operación de nuevo. Gracias.</p>";
+	}
+	
+	document.getElementById("contenidoPDF").onerror = function(){mostrarError();};
+	
+	document.getElementById("contenidoPDF").onload = function(){
+		contadorCargas++;
+		console.log(contadorCargas);
+		console.log(window.top);
+		clearTimeout(esperaPDF);
+		esperaPDF = setTimeout(function(){
+			visualizarPDF();		
+		},intervaloEspera); 	
+	};
+	
+	if(archivoPDF && /^data:application\/pdf;base64/.test(archivoPDF)){
+		document.getElementById("contenidoPDF").src = archivoPDF;	
+	}else{
+		mostrarError();
+	}	
+};
+
+</script>
+</head>
+<body>
+<div id="contenedorPDF">
+<iframe id="contenidoPDF" src="about:blank" nwdisable nwfaketop></iframe>
+<div id="precarga">
+<img id="precarga-imagen" src="./../../images/png/pdf_64.png" title="" alt="" />
+<div id="precarga-texto"></div>
+</div>
+</div>
+</body>
+</html>

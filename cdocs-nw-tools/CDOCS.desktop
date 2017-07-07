@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=0.1.0
+Name=CDOCS
+Comment=Comprueba códigos de documentos de identidad y financieros.
+Exec=/home/../nw
+Icon=logo.png
+Terminal=false
+Type=Application
+Categories=Utility;Application;
+GenericName[es_ES.UTF-8]=Aplicación
+Name[es_ES]=CDOCS
+StartupNotify=true

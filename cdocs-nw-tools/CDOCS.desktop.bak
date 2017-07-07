@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=0.1.0
+Name=cdocs-nw
+Comment=Comprueba códigos de documentos de identidad y financieros.
+Exec=/home/foog/Escritorio/nwjs14/nw
+Icon=/home/foog/Escritorio/nwjs21/logo.png
+Terminal=false
+Type=Application
+Categories=Utility;Application;
+GenericName[es_ES.UTF-8]=Aplicación
+Name[es_ES]=CDOCS
+StartupNotify=true

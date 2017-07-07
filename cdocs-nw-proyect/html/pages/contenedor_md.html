@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title> <!-- Dejamos vacío, modificado por NW.js en la carga de la ventana -->
+<meta charset="UTF-8">
+<style type="text/css">
+html,body{
+	color: #595959;
+	background-color:#E0E0E0;
+	font-size:14px;
+	font-family:"Nimbus Sans L","URW Gothic L",Verdana,Tahoma,Helvetica,"Lucida Grande",Geneva,"DejaVu Sans","Microsoft Sans Serif",sans-serif; 
+	font-weight: normal;
+	-webkit-user-select: none; 
+	overflow:hidden;
+	cursor:default;
+}
+#contenedorMD{
+	position:absolute;
+	top:12px; left:12px; bottom:12px; right:12px;
+	display:block; 
+	padding:6px;
+	color: inherit;
+	background-color:#E0E0E0;
+	overflow-x:hidden;
+	overflow-y: scroll; 	
+}
+#protectorMD{
+	position:absolute;
+	top: 0; left:0; bottom:0; right:0;
+	width:0px;
+	height: 0px;
+	display:block; 
+	color: inherit;
+	background-color:#E0E0E0;
+	opacity:0.2;
+	cursor:default;
+	z-index:1;
+}
+
+#imagen-precarga{
+	position: relative;
+	width:64px;
+	height:64px;
+	margin: 150px auto;
+}
+#pieMD{
+	float:left;
+	width:98%;
+	height:32px;
+	max-height:32px;
+	margin-top:6px;
+	margin-bottom: 6px;
+	padding:6px;
+	text-align:right;	
+	}
+#pieMD-imagen{
+	float:left;
+	width:30px;
+	height:30px;
+	margin: 2px 6px 2px 14px;	
+}
+#imagen-pdf{
+	width:30px;
+	height:30px;
+	visibility:hidden;
+}
+#pieMD-texto-error{
+	float:left;
+	width:auto;
+	max-width:80%;
+	padding:10px 6px 2px 14px; 
+	height:20px;
+	text-align:left;
+	font-size:12px;
+	font-weight: bold;
+	color: red;
+	background-color:inherit;	
+}
+#pulsador-imprimir{
+	float:right;
+	width:auto;
+	height:auto;
+	margin-right:10px;	
+}
+.activo, .inactivo{
+	float:left; 
+	width: 74px;
+	height:14px;
+	max-width:74px;
+	min-width:74px;
+	min-height:12px;
+	text-align: center;
+	margin-left:4px;
+	margin-top:3px;
+}
+.activo{
+	box-shadow:inset 2px 1px 3px 0px #B0B0B0;
+	background:linear-gradient(to bottom, #989898 5%, #686868 100%);
+	background-color:#768d87;
+	border-radius:4px;
+	border:2px solid #686868;
+	display:inline-block;
+	cursor:pointer;
+	color:#E0E0E0;
+	font-family:verdanab;
+	font-size:9px;
+	font-weight:bold;
+	padding:4px 7px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #202020;
+}
+.inactivo{
+	border-radius:4px;
+	display:inline-block;
+	cursor:default;
+	color:#D0D0D0;
+	font-family:verdanab;
+	font-size:9px;
+	font-weight:bold;
+	padding:4px 7px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #808080;	
+	background-color:#A6A6A2;
+	border:2px solid #C0C0C0;
+}
+.activo:hover{
+	color:#FFFFFF;
+	background:linear-gradient(to bottom, #686868 5%, #989898 100%);	
+	background-color:#686868;
+}
+.activo:active{
+	position:relative;
+	top:1px;
+}
+#contenedorMD::-webkit-scrollbar {
+	width: 10px;
+		
+} 
+#contenedorMD::-webkit-scrollbar-track {
+	box-shadow:inset 0 0 4px rgba(0,0,0,0.3);
+	border-radius: 8px;
+	background-clip: content-box; 
+
+}
+#contenedorMD::-webkit-scrollbar-thumb {
+	border-radius: 8px;
+	box-shadow:inset 0 0 4px rgba(0,0,0,0.5);
+}
+#alerta-red{
+	width: 338px;
+	height: 162px; 
+	padding:0;
+	overflow: hidden;
+	border: 1px solid  #aeb6bf;
+	box-shadow: 4px 4px 5px 0px rgba(77,77,77,1);
+	color: #666666;
+	background-color: #F2F3F4;
+	font-weight: bold;	
+}
+#alerta-red-cabecera{
+	float:left;
+	width:338px;
+	height:32px;
+	color: #000000;
+	background-color:#FFFFFF;
+}
+#alerta-red-cabecera-texto{
+	float:left;
+	width:236px;
+	height:32px;
+	text-align:center;
+	margin-left:50px;
+	font-size:14px;
+	line-height: 28px;
+	color:#191919;
+	background-color:inherit;	
+}
+
+#alerta-red-cabecera-cierre{
+	float:right;
+	width:50px;
+	height:32px;
+	cursor:pointer;
+	text-align:center;
+	font-size:22px;
+	color:#0D0D0D;
+	background-color:inherit;		
+}
+#alerta-red-cabecera-cierre:hover{
+	color:#FFFFFF;
+	background-color:#999999;	
+}
+#alerta-red-imagen{
+	float:left;
+	width:48px;
+	height:126px;
+	margin:1px;
+	text-align:center;	
+}
+
+#alerta-red-icono{
+	margin-top:20px;	
+}
+#alerta-red-cuerpo{
+	float: right;
+	width:286px;
+	height:126px;
+	margin:1px;	
+}
+#alerta-red-cuerpo-texto{
+	float:left;
+	width:284px;
+	height:86px;
+	border-bottom: 1px solid #D9D9D9;
+	font-size:14px;	
+	text-align:center;	
+}
+#alerta-red-cuerpo-texto-mensaje{
+margin-top:32px;	
+}
+#alerta-red-cuerpo-botonera{
+	float:left;
+	width:286px;
+	height:36px;
+	margin-top:2px;		
+}
+#alerta-red-botonera-pulsador-d{
+	float:right;
+	width:122px;
+	height:26px;
+	margin:4px 4px;
+	text-align:center;
+	font-size:14px;
+	line-height: 28px;	
+	color:#0D0D0D;
+	background-color:#fff;
+	border: 1px solid #737373;
+	border-radius:2px;
+	cursor:pointer;	
+}
+#alerta-red-botonera-pulsador-d:hover{
+	color:#FFFFFF;
+	background-color:#999999;	
+}
+
+a:link, a:active, a:visited{text-decoration:none;color:#000066;background-color:inherit;}
+a:hover{text-decoration:none;color:#0000FF;background-color:inherit;}
+</style>
+<script type="text/javascript">
+var textoHTML = decodeURIComponent(window.location.search.substring(1));
+var barraInferior = "<div id='pieMD'><div id='pieMD-imagen'><img id='imagen-pdf' src='../../images/png/pdf_64_i.png' alt='PDF' title='PDF'></div><div id='pieMD-texto-error'>&#160;</div><div id='pulsador-imprimir' class='activo' onclick='abrirPDF();'>IMPRIMIR</div></div>";
+textoHTML = textoHTML.replace(/&lt;br\/&gt;/g, "<br/>");
+textoHTML = textoHTML.trim();
+textoHTML = "<div id='textoHTML'>" + textoHTML + "</div>" + barraInferior;
+var textoError = "";
+var imagenPrecarga = "<div id='imagen-precarga'><img src='../../images/png/md_64.png' alt='Markdown' title='Markdown'></div>"; 
+var esperaMD, retrasoCierreProtector;
+var enlaces = [], contadorEnlaces, contadorAtributos,  urlDestino = "";
+var dialog;
+var path = require("path"); //Node.js  Path : Este módulo contiene utilidades para manejar y transformar rutas de archivo.
+var fs = require("fs"); // Node.js fs : File I/O is provided by simple wrappers around standard POSIX functions. 
+var dns = require("dns"); // Node.js DNS : Sistema de Nombres de Dominio.
+var abrirAlertaRed = function(){
+	protectorMD.cerrar();
+	if(!dialog.open){	
+		var sonidoAlerta = new Audio("../../sound/notice.ogg");
+		dialog.showModal();
+		sonidoAlerta.play();
+	}	
+};
+var cerrarAlertaRed = function(){	
+	if(dialog.open){
+		dialog.close();		
+	}	
+};
+var abrirPDF = function(){
+	protectorMD.abrir();
+	var rutaPDF = process.cwd() + path.sep + "pdf" + path.sep + "documentation.pdf";
+	if(document.getElementById("pulsador-imprimir").className === "activo"){
+		document.getElementById("pieMD-texto-error").innerHTML = "&#160;";
+		document.getElementById("pulsador-imprimir").className = "inactivo";
+		document.getElementById("imagen-pdf").style.visibility = "visible";
+		fs.stat(rutaPDF, function(err, stat) {
+			if(err === null) {				
+				clearTimeout(esperaMD);
+					esperaMD = setTimeout(function(){
+					//"nw" Es el objeto global que contiene toda la interfaz de programación de aplicaciones (API) de NW.js. El objeto "nw" es el legado o heredero del módulo "nw-gui" utilizado en las versiones 0.12 y posteriores de NW.js. Necesitaba de la función "require" para cargar en la aplicación la "interfaz gráfica del usuario" (var nw = require("nw-gui")).
+					nw.Shell.openItem(rutaPDF);
+					document.getElementById("imagen-pdf").style.visibility = "hidden";
+					document.getElementById("pieMD-texto-error").innerHTML = "&#160;";
+					document.getElementById("pulsador-imprimir").className = "activo";
+					protectorMD.cerrar("6000");
+				},2000);				   
+			} else {
+				textoError = (err.code && err.code !== "") ? err.code : "EUNDEFINED";
+				document.getElementById("pieMD-texto-error").innerHTML = "ERROR: " + textoError;
+				clearTimeout(esperaMD);
+				esperaMD = setTimeout(function(){
+					document.getElementById("imagen-pdf").style.visibility = "hidden";
+					document.getElementById("pieMD-texto-error").innerHTML = "&#160;";
+					document.getElementById("pulsador-imprimir").className = "activo";
+					protectorMD.cerrar("1000");
+				},2000);				
+			}
+		});
+	}	
+};
+var abrirEnlaceEnNavegador = function(url){
+
+	dns.lookup("google.com", function(error) {
+		if(error && error.code === "ENOTFOUND"){
+			protectorMD.cerrar();
+			abrirAlertaRed();
+		}else{
+			nw.Shell.openExternal(url);
+			protectorMD.cerrar("6000");					
+		}
+	});	
+	
+};
+var protectorMD = {
+	abrir : function(){
+		if(document.getElementById("protectorMD")){
+			document.getElementById("protectorMD").style.width = "100%";
+			document.getElementById("protectorMD").style.height = "100%";
+			document.getElementById("protectorMD").style.cursor = "wait";
+		}
+	},
+	cerrar : function(retraso){
+		retraso = retraso || 0;
+		retraso = (!isNaN(retraso)) ? parseInt(retraso, 10) : 0;
+		if(document.getElementById("protectorMD")){
+			if(retraso === 0){
+				document.getElementById("protectorMD").style.cursor = "default";
+				document.getElementById("protectorMD").style.width = "1px";
+				document.getElementById("protectorMD").style.height = "1px";
+			}else{
+				clearTimeout(retrasoCierreProtector);
+				retrasoCierreProtector = setTimeout(function(){
+					document.getElementById("protectorMD").style.cursor = "default";
+					document.getElementById("protectorMD").style.width = "1px";
+					document.getElementById("protectorMD").style.height = "1px";			
+				}, retraso);	
+			}
+		}
+	}
+};
+window.onload=function(){
+	document.oncontextmenu = function(){return false;};	
+	document.getElementById("contenedorMD").innerHTML = imagenPrecarga;
+	clearTimeout(esperaMD);
+	esperaMD = setTimeout(function(){
+		dialog = document.getElementById("alerta-red");
+		document.getElementById("contenedorMD").innerHTML = "";
+		document.getElementById("contenedorMD").style.backgroundColor = "#F0F0F0";
+		document.getElementById("contenedorMD").innerHTML = textoHTML;	
+		enlaces = Array.prototype.slice.call(document.getElementById("textoHTML").getElementsByTagName("a"));	
+		for(contadorEnlaces = 0; contadorEnlaces < enlaces.length; contadorEnlaces++){	
+			enlaces[contadorEnlaces].addEventListener('click', function(evento) {
+				evento.preventDefault();
+				for(contadorAtributos = 0; contadorAtributos < evento.path.length; contadorAtributos++){
+					if(evento.path[contadorAtributos].tagName.toLowerCase() === "a"){
+						if(evento.path[contadorAtributos].href){
+							urlDestino =  evento.path[contadorAtributos].href;
+							break;
+						}			
+					}
+				}
+				if(urlDestino !== ""){
+					protectorMD.abrir();
+					abrirEnlaceEnNavegador(urlDestino);	
+				}			
+			});			
+		}	
+	},1000);
+};
+
+</script>
+</head>
+<body>
+<dialog id="alerta-red"><div id="alerta-red-cabecera"><div id="alerta-red-cabecera-texto">¡ATENCIÓN!</div><div id="alerta-red-cabecera-cierre" onclick="cerrarAlertaRed();">&#215;</div></div><div id="alerta-red-imagen"><img id="alerta-red-icono" src="../../images/png/alerta_64.png" alt="" title="" height="44" width="44"></div><div id="alerta-red-cuerpo"><div id="alerta-red-cuerpo-texto"><p id="alerta-red-cuerpo-texto-mensaje">Sin acceso a Internet&#160;&#8230;</p></div><div id="alerta-red-cuerpo-botonera"><div id="alerta-red-botonera-pulsador-d" onclick="cerrarAlertaRed();">ACEPTAR</div></div></div></dialog>
+<div id="protectorMD"></div>
+<div id="contenedorMD"></div>
+</body>
+</html>

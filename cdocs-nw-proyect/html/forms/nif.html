@@ -1,0 +1,29 @@
+<div class="formulario">
+<form name="nif" id="nif" autocomplete="off">
+<div class="formulario-cabecera"><ul><li><span class="texto-capital">NIF</span><span>&#160;&#160;Verificación del Número de Identificación Fiscal (antes CIF).</span></li></ul></div>
+<div class="formulario-entrada">
+<table>
+<tr>
+<td class="porcentaje24 texto-capital">NIF&#160;&#160;&#8594;&#160;</td>
+<td class="porcentaje14 texto-centrado selector"><select id="selector-nif" class="tipo-nif" tabindex="1"><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="J">J</option><option value="K">K</option><option value="L">L</option><option value="M">M</option><option value="N">N</option><option value="P">P</option><option value="Q">Q</option><option value="R">R</option><option value="S">S</option><option value="U">U</option><option value="V">V</option><option value="W">W</option><option value="X">X</option><option value="Y">Y</option><option value="Z">Z</option><option value="I">DNI</option></select></td>
+<td class="porcentaje24 texto-centrado"><input id="valor-nif" type="text" tabindex="2" maxlength="7" class="columna97" placeholder="NÚMEROS" /></td>
+<td class="porcentaje10 texto-centrado"><input id="letra-nif" type="text" tabindex="3" maxlength="1" class="columna78 texto-centrado" placeholder="N/L" /></td>
+<td id="verificado-nif" class="porcentaje28"><img src="images/png/ok.png" alt="" title="" class="verificado-imagen" /></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td id="texto-informativo-nif" class="texto-centrado texto-informativo">SIETE NÚMEROS</td>
+<td class="texto-centrado texto-informativo texto-falsa-negrita">DC</td>
+<td></td>
+</tr>
+</table>
+<!--Oculto 1 campo-->
+<input id="oculto-nif" type="hidden" value="" /> 
+</div>
+<div id="salida-nif" class="formulario-salida">
+<div id="nif-definiciones" class="formulario-salida-definiciones">El NIF está formado generalmente por una letra inicial seguida de siete u ocho números y un último carácter (de control), que puede ser otro <span class="texto-falsa-negrita">número</span> o una <span class="texto-falsa-negrita">letra</span> (N/L).</div>
+</div>
+<div id="alerta-nif" class="formulario-alerta"></div>
+</form>
+</div>

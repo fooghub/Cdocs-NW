@@ -1,0 +1,95 @@
+{
+  "chromium-args" : "--disable-gpu --disable-accelerated-video",
+  
+  "webview": {
+     "partitions": [
+        {
+          "name": "trusted",
+          "accessible_resources": [ "<all_urls>" ]
+        }
+     ]
+  },
+  "single-instance": true,
+  "nodejs": true,  
+  "webkit": {
+    "java": false,
+    "double_tap_to_zoom_enabled": false,
+    "plugin": true,
+    "page-cache": false
+  },
+  "node-remote": [],
+  "maintainers": [
+    {
+      "name": "Francisco J. Gómez",
+	  "web": "https://www.foog.es",      
+	  "mail": "foog@foog.es"
+    }
+  ],
+  "bugs": {
+       "mail": "foog@foog.es"       
+   },
+  "os": ["linux", "macos", "win"],
+  "cpu": ["x86", "x86_64"],
+    "repositories": [
+       {
+           "type": "git",
+           "url": "https://github.com/fooghub/Cdocs-NW.git"
+       },
+		{
+		   "type": "remote",
+           "url": "https://www.foog.es/download/nw/"		
+		}		
+   ],
+  
+  "author": "Foog.Software",
+  "main": "index.html",
+  "name": "cdocs-nw",
+  "app_name": "CDOCS",
+  
+  "window": {
+    "as_desktop": false,
+    "kiosk": false,
+    "toolbar": false,
+    "transparent": false,
+    "frame": true,
+    "height": 364,
+    "always_on_top": false,
+    "kiosk_emulation": false,
+    "show_in_taskbar": true,
+    "width": 632,
+    "position": "center",
+    "title": "CDOCS",
+    "fullscreen": false,
+    "icon": "images/png/logo32.png",
+    "visible_on_all_workspaces": false,
+    "show": false,
+    "resizable": false,
+    "id": "main-window-cdocs"
+  },
+  "keywords": [
+    "CDOCS",
+    "NWjs",
+    "Foog"
+  ],
+  "no-edit-menu": true,
+  "additional_trust_anchors": [],
+  "release_version": "Beta",
+  "description": "Comprueba c\u00f3digos de documentos de identidad y financieros.",
+  "version": "0.1.0",
+  "edition": "1457478000000",
+  "db_date": "1451516400000",
+  "series": "FHYG-N2XS-6GM6",  
+  "dependencies": {
+    "fs-extra": "^0.30.0",
+    "marked": "^0.3.6",
+    "unzip": "^0.1.11",
+    "walk-sync": "^0.3.1"
+  },
+   "licenses": [
+       {
+           "type": "MIT",
+           "url": "https://opensource.org/licenses/MIT" 
+       } 
+   ],
+  "WARNING": "Any improper modification in the code of this file can render the application unusable."
+}

@@ -1,6 +1,6 @@
 ## CDOCS (Comprueba Documentos) — Documentación.
 ----
-![CDOCS](../../images/png/logo64.png)
+![CDOCS](https://github.com/fooghub/Cdocs-NW/blob/master/cdocs-nw-proyect/images/png/logo48_1.png)
 
 **CDOCS** (Comprueba Documentos) es una aplicación experimental, divulgativa, de escritorio, gratuita y de Código Abierto. Para **Windows**, **Linux** y **Mac OS X**; con el motor de ejecución  **NW.js** (antes conocido como **node-webkit**).
 

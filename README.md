@@ -1,4 +1,4 @@
-## CDOCS (Comprueba Documentos) — Documentación.
+## CDOCS NW
 ----
 ![CDOCS](https://github.com/fooghub/Cdocs-NW/blob/master/cdocs-nw-proyect/images/png/logo48_1.png)
 
